@@ -99,7 +99,7 @@ function prepareOrdersByDate(orders: Order[]) {
   });
   return Object.entries(dateCounts)
     .sort((a, b) => a[0].localeCompare(b[0]))
-    .map(([date, orders: number]) => ({ date, orders }));
+    .map(([date, orders]) => ({ date, orders }));
 }
 
 export default async function Page() {
