@@ -1,32 +1,31 @@
 import * as https from "https";
+import { URLSearchParams } from "url";
 
-const RETAIL_CRM_URL = "https://gbc-market.retailcrm.ru";
-const RETAIL_CRM_API_KEY = process.env.RETAILCRM_API_KEY || "9M81NTIXg3wr0sgLx0woI2OYfgXrSy6e";
+const RETAIL_CRM_URL = "https://kiberars.retailcrm.ru";
+const RETAIL_CRM_API_KEY = "9M81NTIXg3wr0sgLx0woI2OYfgXrSy6e";
 
 interface OrderItem {
-  productName: string;
+  name: string;
   quantity: number;
   initialPrice: number;
 }
 
-interface Order {
+interface Customer {
   firstName: string;
   lastName: string;
   phone: string;
-  email: string;
-  orderType: string;
-  orderMethod: string;
-  status: string;
+  city: string;
+}
+
+interface Order {
+  id: string;
+  createdAt: string;
+  customer: Customer;
   items: OrderItem[];
-  delivery: {
-    address: {
-      city: string;
-      text: string;
-    };
-  };
-  customFields: {
-    utm_source: string;
-  };
+  utmSource: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  status: string;
 }
 
 function loadOrdersFromFile(): Order[] {
@@ -37,43 +36,45 @@ function loadOrdersFromFile(): Order[] {
 
 function createRetailCrmOrder(order: Order): any {
   const items = order.items.map((item) => ({
-    offer: { name: item.productName },
+    offer: { name: item.name },
     quantity: item.quantity,
     initialPrice: item.initialPrice,
   }));
 
   return {
-    firstName: order.firstName,
-    lastName: order.lastName,
-    phone: order.phone,
-    email: order.email,
-    orderType: order.orderType,
-    orderMethod: order.orderMethod,
-    status: order.status,
+    externalId: order.id,
+    firstName: order.customer.firstName,
+    lastName: order.customer.lastName,
+    phone: order.customer.phone,
+    email: `${order.customer.firstName.toLowerCase()}.${order.customer.lastName.toLowerCase()}@example.com`,
     items,
     delivery: {
       address: {
-        city: order.delivery.address.city,
-        text: order.delivery.address.text,
+        city: order.customer.city,
+        text: "ул.default 1",
       },
     },
     customFields: {
-      utm_source: order.customFields.utm_source,
+      utm_source: order.utmSource,
     },
   };
 }
 
-function makeRequest(path: string, method: string, data?: string): Promise<any> {
+function makeRequest(path: string, method: string, data?: any): Promise<any> {
   return new Promise((resolve, reject) => {
     const url = new URL(path, RETAIL_CRM_URL);
+    url.searchParams.set("apiKey", RETAIL_CRM_API_KEY);
+
+    const postData = data ? new URLSearchParams(data).toString() : undefined;
+
     const options = {
       hostname: url.hostname,
       port: 443,
       path: url.pathname + url.search,
       method,
       headers: {
-        "Content-Type": "application/json",
-        "Api-Key": RETAIL_CRM_API_KEY,
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Length": postData ? Buffer.byteLength(postData) : 0,
       },
     };
 
@@ -92,8 +93,8 @@ function makeRequest(path: string, method: string, data?: string): Promise<any> 
 
     req.on("error", reject);
 
-    if (data) {
-      req.write(data);
+    if (postData) {
+      req.write(postData);
     }
     req.end();
   });
@@ -101,20 +102,28 @@ function makeRequest(path: string, method: string, data?: string): Promise<any> 
 
 async function createOrderInRetailCrm(order: Order): Promise<boolean> {
   const orderData = createRetailCrmOrder(order);
-  const data = JSON.stringify({ order: orderData });
+
+  const formData = new URLSearchParams();
+  formData.append("order", JSON.stringify(orderData));
+
+  console.log("Order data:", JSON.stringify(orderData, null, 2));
 
   try {
-    const response = await makeRequest("/api/v5/orders/create", "POST", data);
-    
+    let response = await makeRequest("/api/v5/orders/create", "POST", formData.toString());
+
+    if (!response.success && response.errorMsg === "Order already exists.") {
+      response = await makeRequest(`/api/v5/orders/${order.id}/edit`, "POST", formData.toString());
+    }
+
     if (response.success) {
-      console.log(`✓ Created order for ${order.firstName} ${order.lastName}`);
+      console.log(`✓ Created order ${order.id} for ${order.customer.firstName} ${order.customer.lastName}`);
       return true;
     } else {
-      console.error(`✗ Failed to create order for ${order.firstName}:`, response.errors);
+      console.error(`✗ Failed to create order ${order.id}:`, response.errorMsg);
       return false;
     }
   } catch (error) {
-    console.error(`✗ Error creating order for ${order.firstName}:`, error);
+    console.error(`✗ Error creating order ${order.id}:`, error);
     return false;
   }
 }
@@ -131,14 +140,13 @@ async function main() {
   for (let i = 0; i < orders.length; i++) {
     const order = orders[i];
     const result = await createOrderInRetailCrm(order);
-    
+
     if (result) {
       successCount++;
     } else {
       failCount++;
     }
 
-    // Small delay between requests
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
 

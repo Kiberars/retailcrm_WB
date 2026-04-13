@@ -1,10 +1,10 @@
 import * as https from "https";
 
-const RETAIL_CRM_URL = "https://gbc-market.retailcrm.ru";
-const RETAIL_CRM_API_KEY = process.env.RETAILCRM_API_KEY || "9M81NTIXg3wr0sgLx0woI2OYfgXrSy6e";
+const RETAIL_CRM_URL = "https://kiberars.retailcrm.ru";
+const RETAIL_CRM_API_KEY = "9M81NTIXg3wr0sgLx0woI2OYfgXrSy6e";
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://lmbwhoqmgrouoywxvilh.supabase.co";
-const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+const SUPABASE_URL = "https://lmbwhoqmgrouoywxvilh.supabase.co";
+const SUPABASE_SERVICE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxtYndob3FtZ3JvdW95d3h2aWxoIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NjA3ODMwMiwiZXhwIjoyMDkxNjU0MzAyfQ.QT1ljQuAPA9kz342DnY3UDU64BS9qsgZ68rY3r8C0f4";
 
 interface RetailCrmOrder {
   id: number;
@@ -31,17 +31,18 @@ interface RetailCrmOrder {
   };
 }
 
-function makeRequest(path: string, method: string, data?: string): Promise<any> {
+function makeCrmRequest(path: string, method: string, data?: string): Promise<any> {
   return new Promise((resolve, reject) => {
     const url = new URL(path, RETAIL_CRM_URL);
+    url.searchParams.set("apiKey", RETAIL_CRM_API_KEY);
+
     const options = {
       hostname: url.hostname,
       port: 443,
       path: url.pathname + url.search,
       method,
       headers: {
-        "Content-Type": "application/json",
-        "Api-Key": RETAIL_CRM_API_KEY,
+        "Content-Type": "application/x-www-form-urlencoded",
       },
     };
 
@@ -70,7 +71,11 @@ function makeRequest(path: string, method: string, data?: string): Promise<any> 
 async function fetchOrdersFromRetailCrm(): Promise<RetailCrmOrder[]> {
   console.log("Fetching orders from RetailCRM...");
 
-  const response = await makeRequest("/api/v5/orders", "GET");
+  const url = new URL("/api/v5/orders", RETAIL_CRM_URL);
+  url.searchParams.set("apiKey", RETAIL_CRM_API_KEY);
+  url.searchParams.set("limit", "100");
+
+  const response = await makeCrmRequest(url.pathname + url.search, "GET");
   
   if (!response.success) {
     throw new Error(`Failed to fetch orders: ${JSON.stringify(response.errors)}`);
@@ -96,7 +101,7 @@ async function supabaseRequest(method: string, path: string, body?: string): Pro
       method,
       headers: {
         "Content-Type": "application/json",
-        "apikey": SUPABASE_SERVICE_KEY!,
+        "apikey": SUPABASE_SERVICE_KEY,
         "Authorization": `Bearer ${SUPABASE_SERVICE_KEY}`,
       },
     };
@@ -107,6 +112,10 @@ async function supabaseRequest(method: string, path: string, body?: string): Pro
       res.on("end", () => {
         try {
           const bodyStr = Buffer.concat(chunks).toString();
+          if (!bodyStr) {
+            resolve({ status: res.statusCode, body: {} });
+            return;
+          }
           resolve({ status: res.statusCode, body: JSON.parse(bodyStr) });
         } catch (e) {
           reject(e);
@@ -140,14 +149,12 @@ async function syncOrderToSupabase(order: RetailCrmOrder): Promise<boolean> {
   };
 
   try {
-    // Check if order exists
     const checkResponse = await supabaseRequest(
       "GET",
       `/rest/v1/orders?order_id=eq.${order.externalId || `ORD-${order.id}`}`
     );
 
     if (checkResponse.body && checkResponse.body.length > 0) {
-      // Update existing
       await supabaseRequest(
         "PATCH",
         `/rest/v1/orders?order_id=eq.${order.externalId || `ORD-${order.id}`}`,
@@ -155,7 +162,6 @@ async function syncOrderToSupabase(order: RetailCrmOrder): Promise<boolean> {
       );
       console.log(`✓ Updated order ${order.externalId || `ORD-${order.id}`}`);
     } else {
-      // Insert new
       await supabaseRequest(
         "POST",
         "/rest/v1/orders",
