@@ -1,0 +1,590 @@
+[
+  {
+    "id": "ORD-001",
+    "createdAt": "2024-01-03T09:14:00Z",
+    "customer": { "firstName": "Айгерим", "lastName": "Бекова", "phone": "+77011234501", "city": "Алматы" },
+    "items": [{ "name": "Корсет корректирующий Slim Waist XS", "quantity": 1, "initialPrice": 18900 }],
+    "utmSource": "instagram",
+    "utmMedium": "cpc",
+    "utmCampaign": "lingerie_jan",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-002",
+    "createdAt": "2024-01-04T11:30:00Z",
+    "customer": { "firstName": "Дана", "lastName": "Сейткали", "phone": "+77011234502", "city": "Астана" },
+    "items": [
+      { "name": "Бюстгальтер корректирующий Push-Up M", "quantity": 1, "initialPrice": 14500 },
+      { "name": "Корректирующие шорты M", "quantity": 1, "initialPrice": 9800 }
+    ],
+    "utmSource": "google",
+    "utmMedium": "cpc",
+    "utmCampaign": "shapewear_google",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-003",
+    "createdAt": "2024-01-05T14:22:00Z",
+    "customer": { "firstName": "Меруерт", "lastName": "Ахметова", "phone": "+77011234503", "city": "Шымкент" },
+    "items": [{ "name": "Корсет утягивающий Classic L", "quantity": 1, "initialPrice": 22000 }],
+    "utmSource": "tiktok",
+    "utmMedium": "social",
+    "utmCampaign": "tiktok_shapewear",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-004",
+    "createdAt": "2024-01-06T10:05:00Z",
+    "customer": { "firstName": "Зарина", "lastName": "Нурланова", "phone": "+77011234504", "city": "Алматы" },
+    "items": [
+      { "name": "Топ корректирующий S", "quantity": 2, "initialPrice": 11200 },
+      { "name": "Корректирующие леггинсы S", "quantity": 1, "initialPrice": 16700 }
+    ],
+    "utmSource": "instagram",
+    "utmMedium": "organic",
+    "utmCampaign": "reels_jan",
+    "status": "cancelled"
+  },
+  {
+    "id": "ORD-005",
+    "createdAt": "2024-01-07T16:48:00Z",
+    "customer": { "firstName": "Гульнара", "lastName": "Сарсенова", "phone": "+77011234505", "city": "Астана" },
+    "items": [{ "name": "Корсет Premium XL", "quantity": 1, "initialPrice": 31500 }],
+    "utmSource": "google",
+    "utmMedium": "cpc",
+    "utmCampaign": "premium_jan",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-006",
+    "createdAt": "2024-01-08T09:33:00Z",
+    "customer": { "firstName": "Назым", "lastName": "Касымова", "phone": "+77011234506", "city": "Алматы" },
+    "items": [
+      { "name": "Бюстгальтер корректирующий L", "quantity": 1, "initialPrice": 14500 },
+      { "name": "Корректирующие шорты L", "quantity": 1, "initialPrice": 9800 },
+      { "name": "Корсет корректирующий Classic M", "quantity": 1, "initialPrice": 18900 }
+    ],
+    "utmSource": "tiktok",
+    "utmMedium": "social",
+    "utmCampaign": "tiktok_bundle",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-007",
+    "createdAt": "2024-01-09T13:10:00Z",
+    "customer": { "firstName": "Алтынай", "lastName": "Жумабекова", "phone": "+77011234507", "city": "Шымкент" },
+    "items": [{ "name": "Пояс корректирующий S", "quantity": 1, "initialPrice": 8900 }],
+    "utmSource": "instagram",
+    "utmMedium": "cpc",
+    "utmCampaign": "lingerie_jan",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-008",
+    "createdAt": "2024-01-10T15:55:00Z",
+    "customer": { "firstName": "Сауле", "lastName": "Токтарова", "phone": "+77011234508", "city": "Астана" },
+    "items": [
+      { "name": "Корсет утягивающий Premium S", "quantity": 1, "initialPrice": 31500 },
+      { "name": "Корректирующие леггинсы M", "quantity": 1, "initialPrice": 16700 }
+    ],
+    "utmSource": "google",
+    "utmMedium": "cpc",
+    "utmCampaign": "shapewear_google",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-009",
+    "createdAt": "2024-01-11T08:20:00Z",
+    "customer": { "firstName": "Камила", "lastName": "Мусаева", "phone": "+77011234509", "city": "Алматы" },
+    "items": [{ "name": "Топ корректирующий M", "quantity": 3, "initialPrice": 11200 }],
+    "utmSource": "tiktok",
+    "utmMedium": "social",
+    "utmCampaign": "tiktok_shapewear",
+    "status": "processing"
+  },
+  {
+    "id": "ORD-010",
+    "createdAt": "2024-01-12T11:45:00Z",
+    "customer": { "firstName": "Балжан", "lastName": "Ережепова", "phone": "+77011234510", "city": "Алматы" },
+    "items": [
+      { "name": "Корсет корректирующий Slim Waist M", "quantity": 1, "initialPrice": 18900 },
+      { "name": "Пояс корректирующий M", "quantity": 1, "initialPrice": 8900 }
+    ],
+    "utmSource": "instagram",
+    "utmMedium": "cpc",
+    "utmCampaign": "lingerie_jan",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-011",
+    "createdAt": "2024-01-13T14:30:00Z",
+    "customer": { "firstName": "Аружан", "lastName": "Сейтжанова", "phone": "+77011234511", "city": "Шымкент" },
+    "items": [{ "name": "Корректирующие шорты XL", "quantity": 2, "initialPrice": 9800 }],
+    "utmSource": "google",
+    "utmMedium": "organic",
+    "utmCampaign": "seo_shapewear",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-012",
+    "createdAt": "2024-01-15T10:18:00Z",
+    "customer": { "firstName": "Лейла", "lastName": "Байжанова", "phone": "+77011234512", "city": "Астана" },
+    "items": [
+      { "name": "Корсет Premium M", "quantity": 1, "initialPrice": 31500 },
+      { "name": "Бюстгальтер корректирующий M", "quantity": 1, "initialPrice": 14500 },
+      { "name": "Корректирующие шорты M", "quantity": 1, "initialPrice": 9800 }
+    ],
+    "utmSource": "instagram",
+    "utmMedium": "cpc",
+    "utmCampaign": "lingerie_feb",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-013",
+    "createdAt": "2024-01-16T09:05:00Z",
+    "customer": { "firstName": "Мадина", "lastName": "Кенжебекова", "phone": "+77011234513", "city": "Алматы" },
+    "items": [{ "name": "Корсет корректирующий Classic XS", "quantity": 1, "initialPrice": 18900 }],
+    "utmSource": "tiktok",
+    "utmMedium": "social",
+    "utmCampaign": "tiktok_jan2",
+    "status": "returned"
+  },
+  {
+    "id": "ORD-014",
+    "createdAt": "2024-01-17T16:00:00Z",
+    "customer": { "firstName": "Асель", "lastName": "Жаксыбекова", "phone": "+77011234514", "city": "Алматы" },
+    "items": [
+      { "name": "Корректирующие леггинсы L", "quantity": 1, "initialPrice": 16700 },
+      { "name": "Топ корректирующий L", "quantity": 1, "initialPrice": 11200 }
+    ],
+    "utmSource": "google",
+    "utmMedium": "cpc",
+    "utmCampaign": "shapewear_google",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-015",
+    "createdAt": "2024-01-18T12:30:00Z",
+    "customer": { "firstName": "Самал", "lastName": "Абенова", "phone": "+77011234515", "city": "Астана" },
+    "items": [{ "name": "Корсет утягивающий M", "quantity": 1, "initialPrice": 22000 }],
+    "utmSource": "instagram",
+    "utmMedium": "organic",
+    "utmCampaign": "reels_jan",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-016",
+    "createdAt": "2024-01-20T08:45:00Z",
+    "customer": { "firstName": "Жансая", "lastName": "Нурмагамбетова", "phone": "+77011234516", "city": "Шымкент" },
+    "items": [
+      { "name": "Корсет Premium L", "quantity": 1, "initialPrice": 31500 },
+      { "name": "Пояс корректирующий L", "quantity": 1, "initialPrice": 8900 }
+    ],
+    "utmSource": "tiktok",
+    "utmMedium": "social",
+    "utmCampaign": "tiktok_shapewear",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-017",
+    "createdAt": "2024-01-21T11:22:00Z",
+    "customer": { "firstName": "Динара", "lastName": "Омарова", "phone": "+77011234517", "city": "Алматы" },
+    "items": [{ "name": "Бюстгальтер корректирующий XL", "quantity": 1, "initialPrice": 14500 }],
+    "utmSource": "google",
+    "utmMedium": "cpc",
+    "utmCampaign": "premium_jan",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-018",
+    "createdAt": "2024-01-22T14:15:00Z",
+    "customer": { "firstName": "Перизат", "lastName": "Бектурова", "phone": "+77011234518", "city": "Алматы" },
+    "items": [
+      { "name": "Корсет корректирующий Slim Waist L", "quantity": 1, "initialPrice": 18900 },
+      { "name": "Корректирующие шорты S", "quantity": 2, "initialPrice": 9800 }
+    ],
+    "utmSource": "instagram",
+    "utmMedium": "cpc",
+    "utmCampaign": "lingerie_jan",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-019",
+    "createdAt": "2024-01-23T10:50:00Z",
+    "customer": { "firstName": "Нургуль", "lastName": "Сейткалиева", "phone": "+77011234519", "city": "Астана" },
+    "items": [{ "name": "Корректирующие леггинсы XL", "quantity": 1, "initialPrice": 16700 }],
+    "utmSource": "tiktok",
+    "utmMedium": "social",
+    "utmCampaign": "tiktok_bundle",
+    "status": "processing"
+  },
+  {
+    "id": "ORD-020",
+    "createdAt": "2024-01-24T15:33:00Z",
+    "customer": { "firstName": "Гульмира", "lastName": "Абдрахманова", "phone": "+77011234520", "city": "Шымкент" },
+    "items": [
+      { "name": "Корсет Premium XS", "quantity": 1, "initialPrice": 31500 },
+      { "name": "Топ корректирующий XS", "quantity": 1, "initialPrice": 11200 },
+      { "name": "Корректирующие шорты XS", "quantity": 1, "initialPrice": 9800 }
+    ],
+    "utmSource": "google",
+    "utmMedium": "cpc",
+    "utmCampaign": "shapewear_google",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-021",
+    "createdAt": "2024-01-26T09:10:00Z",
+    "customer": { "firstName": "Ботагоз", "lastName": "Кожахметова", "phone": "+77011234521", "city": "Алматы" },
+    "items": [{ "name": "Пояс корректирующий XL", "quantity": 1, "initialPrice": 8900 }],
+    "utmSource": "instagram",
+    "utmMedium": "cpc",
+    "utmCampaign": "lingerie_feb",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-022",
+    "createdAt": "2024-01-27T13:44:00Z",
+    "customer": { "firstName": "Айнур", "lastName": "Жумагулова", "phone": "+77011234522", "city": "Алматы" },
+    "items": [
+      { "name": "Корсет утягивающий Classic S", "quantity": 1, "initialPrice": 22000 },
+      { "name": "Бюстгальтер корректирующий S", "quantity": 1, "initialPrice": 14500 }
+    ],
+    "utmSource": "tiktok",
+    "utmMedium": "social",
+    "utmCampaign": "tiktok_jan2",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-023",
+    "createdAt": "2024-01-28T16:20:00Z",
+    "customer": { "firstName": "Акмарал", "lastName": "Рысбекова", "phone": "+77011234523", "city": "Астана" },
+    "items": [{ "name": "Корректирующие леггинсы S", "quantity": 2, "initialPrice": 16700 }],
+    "utmSource": "google",
+    "utmMedium": "organic",
+    "utmCampaign": "seo_shapewear",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-024",
+    "createdAt": "2024-01-29T10:05:00Z",
+    "customer": { "firstName": "Толкын", "lastName": "Есенова", "phone": "+77011234524", "city": "Шымкент" },
+    "items": [
+      { "name": "Корсет корректирующий Classic M", "quantity": 1, "initialPrice": 18900 },
+      { "name": "Корректирующие шорты M", "quantity": 1, "initialPrice": 9800 }
+    ],
+    "utmSource": "instagram",
+    "utmMedium": "cpc",
+    "utmCampaign": "lingerie_jan",
+    "status": "cancelled"
+  },
+  {
+    "id": "ORD-025",
+    "createdAt": "2024-01-30T14:38:00Z",
+    "customer": { "firstName": "Индира", "lastName": "Калиева", "phone": "+77011234525", "city": "Алматы" },
+    "items": [{ "name": "Корсет Premium M", "quantity": 1, "initialPrice": 31500 }],
+    "utmSource": "tiktok",
+    "utmMedium": "social",
+    "utmCampaign": "tiktok_shapewear",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-026",
+    "createdAt": "2024-02-01T09:30:00Z",
+    "customer": { "firstName": "Шолпан", "lastName": "Мухамедова", "phone": "+77011234526", "city": "Астана" },
+    "items": [
+      { "name": "Топ корректирующий M", "quantity": 1, "initialPrice": 11200 },
+      { "name": "Пояс корректирующий M", "quantity": 1, "initialPrice": 8900 }
+    ],
+    "utmSource": "google",
+    "utmMedium": "cpc",
+    "utmCampaign": "premium_feb",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-027",
+    "createdAt": "2024-02-02T12:15:00Z",
+    "customer": { "firstName": "Раушан", "lastName": "Кенесова", "phone": "+77011234527", "city": "Алматы" },
+    "items": [{ "name": "Бюстгальтер корректирующий M", "quantity": 1, "initialPrice": 14500 }],
+    "utmSource": "instagram",
+    "utmMedium": "organic",
+    "utmCampaign": "reels_feb",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-028",
+    "createdAt": "2024-02-03T15:00:00Z",
+    "customer": { "firstName": "Айжан", "lastName": "Тастанбекова", "phone": "+77011234528", "city": "Шымкент" },
+    "items": [
+      { "name": "Корсет утягивающий Premium M", "quantity": 1, "initialPrice": 31500 },
+      { "name": "Корректирующие леггинсы M", "quantity": 1, "initialPrice": 16700 },
+      { "name": "Корректирующие шорты M", "quantity": 1, "initialPrice": 9800 }
+    ],
+    "utmSource": "tiktok",
+    "utmMedium": "social",
+    "utmCampaign": "tiktok_bundle",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-029",
+    "createdAt": "2024-02-05T11:40:00Z",
+    "customer": { "firstName": "Венера", "lastName": "Абилова", "phone": "+77011234529", "city": "Алматы" },
+    "items": [{ "name": "Корсет корректирующий Slim Waist S", "quantity": 1, "initialPrice": 18900 }],
+    "utmSource": "google",
+    "utmMedium": "cpc",
+    "utmCampaign": "shapewear_google",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-030",
+    "createdAt": "2024-02-06T09:55:00Z",
+    "customer": { "firstName": "Наргиз", "lastName": "Байбекова", "phone": "+77011234530", "city": "Астана" },
+    "items": [
+      { "name": "Корсет Premium XL", "quantity": 1, "initialPrice": 31500 },
+      { "name": "Бюстгальтер корректирующий XL", "quantity": 1, "initialPrice": 14500 }
+    ],
+    "utmSource": "instagram",
+    "utmMedium": "cpc",
+    "utmCampaign": "lingerie_feb",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-031",
+    "createdAt": "2024-02-07T14:25:00Z",
+    "customer": { "firstName": "Ажар", "lastName": "Жанибекова", "phone": "+77011234531", "city": "Алматы" },
+    "items": [{ "name": "Корректирующие шорты XS", "quantity": 3, "initialPrice": 9800 }],
+    "utmSource": "tiktok",
+    "utmMedium": "social",
+    "utmCampaign": "tiktok_feb",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-032",
+    "createdAt": "2024-02-08T10:10:00Z",
+    "customer": { "firstName": "Гаухар", "lastName": "Нурбекова", "phone": "+77011234532", "city": "Шымкент" },
+    "items": [
+      { "name": "Корсет корректирующий Classic L", "quantity": 1, "initialPrice": 18900 },
+      { "name": "Пояс корректирующий L", "quantity": 1, "initialPrice": 8900 }
+    ],
+    "utmSource": "google",
+    "utmMedium": "cpc",
+    "utmCampaign": "premium_feb",
+    "status": "processing"
+  },
+  {
+    "id": "ORD-033",
+    "createdAt": "2024-02-09T16:35:00Z",
+    "customer": { "firstName": "Ұлбосын", "lastName": "Серикова", "phone": "+77011234533", "city": "Алматы" },
+    "items": [{ "name": "Корректирующие леггинсы XS", "quantity": 1, "initialPrice": 16700 }],
+    "utmSource": "instagram",
+    "utmMedium": "cpc",
+    "utmCampaign": "lingerie_feb",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-034",
+    "createdAt": "2024-02-10T12:00:00Z",
+    "customer": { "firstName": "Макпал", "lastName": "Асанова", "phone": "+77011234534", "city": "Астана" },
+    "items": [
+      { "name": "Корсет утягивающий XL", "quantity": 1, "initialPrice": 22000 },
+      { "name": "Топ корректирующий XL", "quantity": 1, "initialPrice": 11200 },
+      { "name": "Корректирующие шорты XL", "quantity": 1, "initialPrice": 9800 }
+    ],
+    "utmSource": "tiktok",
+    "utmMedium": "social",
+    "utmCampaign": "tiktok_bundle",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-035",
+    "createdAt": "2024-02-12T09:20:00Z",
+    "customer": { "firstName": "Зульфия", "lastName": "Кабылбекова", "phone": "+77011234535", "city": "Алматы" },
+    "items": [{ "name": "Бюстгальтер корректирующий S", "quantity": 2, "initialPrice": 14500 }],
+    "utmSource": "google",
+    "utmMedium": "cpc",
+    "utmCampaign": "shapewear_google",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-036",
+    "createdAt": "2024-02-13T14:50:00Z",
+    "customer": { "firstName": "Дильнар", "lastName": "Рахимова", "phone": "+77011234536", "city": "Шымкент" },
+    "items": [
+      { "name": "Корсет Premium S", "quantity": 1, "initialPrice": 31500 },
+      { "name": "Корректирующие леггинсы S", "quantity": 1, "initialPrice": 16700 }
+    ],
+    "utmSource": "instagram",
+    "utmMedium": "organic",
+    "utmCampaign": "reels_feb",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-037",
+    "createdAt": "2024-02-14T10:30:00Z",
+    "customer": { "firstName": "Айдана", "lastName": "Мамытбекова", "phone": "+77011234537", "city": "Алматы" },
+    "items": [{ "name": "Пояс корректирующий S", "quantity": 2, "initialPrice": 8900 }],
+    "utmSource": "tiktok",
+    "utmMedium": "social",
+    "utmCampaign": "tiktok_feb",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-038",
+    "createdAt": "2024-02-15T13:15:00Z",
+    "customer": { "firstName": "Аяулым", "lastName": "Жапарова", "phone": "+77011234538", "city": "Астана" },
+    "items": [
+      { "name": "Корсет корректирующий Slim Waist XL", "quantity": 1, "initialPrice": 18900 },
+      { "name": "Бюстгальтер корректирующий XL", "quantity": 1, "initialPrice": 14500 },
+      { "name": "Пояс корректирующий XL", "quantity": 1, "initialPrice": 8900 }
+    ],
+    "utmSource": "google",
+    "utmMedium": "cpc",
+    "utmCampaign": "premium_feb",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-039",
+    "createdAt": "2024-02-17T11:00:00Z",
+    "customer": { "firstName": "Жулдыз", "lastName": "Темирова", "phone": "+77011234539", "city": "Алматы" },
+    "items": [{ "name": "Корсет утягивающий Premium L", "quantity": 1, "initialPrice": 31500 }],
+    "utmSource": "instagram",
+    "utmMedium": "cpc",
+    "utmCampaign": "lingerie_feb",
+    "status": "returned"
+  },
+  {
+    "id": "ORD-040",
+    "createdAt": "2024-02-18T15:45:00Z",
+    "customer": { "firstName": "Маржан", "lastName": "Нуралиева", "phone": "+77011234540", "city": "Шымкент" },
+    "items": [
+      { "name": "Топ корректирующий S", "quantity": 1, "initialPrice": 11200 },
+      { "name": "Корректирующие леггинсы S", "quantity": 1, "initialPrice": 16700 }
+    ],
+    "utmSource": "tiktok",
+    "utmMedium": "social",
+    "utmCampaign": "tiktok_shapewear",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-041",
+    "createdAt": "2024-02-20T09:40:00Z",
+    "customer": { "firstName": "Бибигуль", "lastName": "Сатыбалдиева", "phone": "+77011234541", "city": "Алматы" },
+    "items": [{ "name": "Корректирующие шорты S", "quantity": 1, "initialPrice": 9800 }],
+    "utmSource": "google",
+    "utmMedium": "organic",
+    "utmCampaign": "seo_shapewear",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-042",
+    "createdAt": "2024-02-21T12:55:00Z",
+    "customer": { "firstName": "Санем", "lastName": "Искакова", "phone": "+77011234542", "city": "Астана" },
+    "items": [
+      { "name": "Корсет Premium L", "quantity": 1, "initialPrice": 31500 },
+      { "name": "Корсет корректирующий Classic L", "quantity": 1, "initialPrice": 18900 }
+    ],
+    "utmSource": "instagram",
+    "utmMedium": "cpc",
+    "utmCampaign": "lingerie_feb",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-043",
+    "createdAt": "2024-02-22T16:10:00Z",
+    "customer": { "firstName": "Назгуль", "lastName": "Амангелдиева", "phone": "+77011234543", "city": "Алматы" },
+    "items": [{ "name": "Бюстгальтер корректирующий M", "quantity": 1, "initialPrice": 14500 }],
+    "utmSource": "tiktok",
+    "utmMedium": "social",
+    "utmCampaign": "tiktok_feb",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-044",
+    "createdAt": "2024-02-23T10:25:00Z",
+    "customer": { "firstName": "Ляззат", "lastName": "Бекназарова", "phone": "+77011234544", "city": "Шымкент" },
+    "items": [
+      { "name": "Корсет утягивающий S", "quantity": 1, "initialPrice": 22000 },
+      { "name": "Пояс корректирующий S", "quantity": 1, "initialPrice": 8900 },
+      { "name": "Корректирующие шорты S", "quantity": 1, "initialPrice": 9800 }
+    ],
+    "utmSource": "google",
+    "utmMedium": "cpc",
+    "utmCampaign": "shapewear_google",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-045",
+    "createdAt": "2024-02-25T14:05:00Z",
+    "customer": { "firstName": "Жамиля", "lastName": "Нурбаева", "phone": "+77011234545", "city": "Алматы" },
+    "items": [{ "name": "Корректирующие леггинсы M", "quantity": 2, "initialPrice": 16700 }],
+    "utmSource": "instagram",
+    "utmMedium": "organic",
+    "utmCampaign": "reels_feb",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-046",
+    "createdAt": "2024-02-26T11:35:00Z",
+    "customer": { "firstName": "Куралай", "lastName": "Ахметбекова", "phone": "+77011234546", "city": "Астана" },
+    "items": [
+      { "name": "Корсет Premium M", "quantity": 1, "initialPrice": 31500 },
+      { "name": "Топ корректирующий M", "quantity": 2, "initialPrice": 11200 }
+    ],
+    "utmSource": "tiktok",
+    "utmMedium": "social",
+    "utmCampaign": "tiktok_bundle",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-047",
+    "createdAt": "2024-02-27T15:20:00Z",
+    "customer": { "firstName": "Сымбат", "lastName": "Оспанова", "phone": "+77011234547", "city": "Алматы" },
+    "items": [{ "name": "Корсет корректирующий Slim Waist M", "quantity": 1, "initialPrice": 18900 }],
+    "utmSource": "google",
+    "utmMedium": "cpc",
+    "utmCampaign": "premium_feb",
+    "status": "processing"
+  },
+  {
+    "id": "ORD-048",
+    "createdAt": "2024-02-28T09:00:00Z",
+    "customer": { "firstName": "Дариға", "lastName": "Сарбасова", "phone": "+77011234548", "city": "Шымкент" },
+    "items": [
+      { "name": "Бюстгальтер корректирующий L", "quantity": 1, "initialPrice": 14500 },
+      { "name": "Корректирующие шорты L", "quantity": 2, "initialPrice": 9800 }
+    ],
+    "utmSource": "instagram",
+    "utmMedium": "cpc",
+    "utmCampaign": "lingerie_feb",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-049",
+    "createdAt": "2024-02-29T13:50:00Z",
+    "customer": { "firstName": "Алма", "lastName": "Берикова", "phone": "+77011234549", "city": "Алматы" },
+    "items": [
+      { "name": "Корсет утягивающий Premium XL", "quantity": 1, "initialPrice": 31500 },
+      { "name": "Корректирующие леггинсы XL", "quantity": 1, "initialPrice": 16700 },
+      { "name": "Пояс корректирующий XL", "quantity": 1, "initialPrice": 8900 }
+    ],
+    "utmSource": "tiktok",
+    "utmMedium": "social",
+    "utmCampaign": "tiktok_feb",
+    "status": "delivered"
+  },
+  {
+    "id": "ORD-050",
+    "createdAt": "2024-03-01T10:45:00Z",
+    "customer": { "firstName": "Молдир", "lastName": "Касенова", "phone": "+77011234550", "city": "Астана" },
+    "items": [
+      { "name": "Корсет Premium XS", "quantity": 1, "initialPrice": 31500 },
+      { "name": "Бюстгальтер корректирующий XS", "quantity": 1, "initialPrice": 14500 },
+      { "name": "Топ корректирующий XS", "quantity": 1, "initialPrice": 11200 },
+      { "name": "Корректирующие шорты XS", "quantity": 1, "initialPrice": 9800 }
+    ],
+    "utmSource": "google",
+    "utmMedium": "cpc",
+    "utmCampaign": "shapewear_google",
+    "status": "delivered"
+  }
+]
