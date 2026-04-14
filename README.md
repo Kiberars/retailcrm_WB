@@ -2,7 +2,7 @@
 
 Аналитическая система для отслеживания заказов корректирующего белья с дашбордом, базой данных Supabase и Telegram-уведомлениями.
 
-![Dashboard](dashboard1.png)
+![Dashboard](dashboard1.PNG)
 
 ## Архитектура
 
@@ -30,19 +30,23 @@ mock_orders.json → RetailCRM API → Scripts → Supabase → Dashboard (Verce
 
 ### Dashboard - Статистика и графики
 
-![Dashboard](dashboard1.png)
+![Dashboard](dashboard1.PNG)
+
+### Dashboard - Статистика и графики
+
+![Dashboard](dashboard1.PNG)
 
 ### Dashboard - Таблица заказов
 
-![Dashboard](dashboard2.png)
+![Dashboard](dashboard2.PNG)
 
 ### Supabase - База данных
 
-![Supabase](supabase.png)
+![Supabase](supabase.PNG)
 
 ### Telegram - Уведомления
 
-![Telegram](telegram_bot.png)
+![Telegram](telegram_bot.PNG)
 
 ## Установка
 
