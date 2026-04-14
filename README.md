@@ -32,10 +32,6 @@ mock_orders.json → RetailCRM API → Scripts → Supabase → Dashboard (Verce
 
 ![Dashboard](dashboard1.PNG)
 
-### Dashboard - Статистика и графики
-
-![Dashboard](dashboard1.PNG)
-
 ### Dashboard - Таблица заказов
 
 ![Dashboard](dashboard2.PNG)
@@ -155,6 +151,96 @@ CREATE POLICY "Allow public read" ON orders FOR SELECT USING (true);
 📊 UTM: instagram
 🕐 Дата: 14.04.2026
 ```
+
+## История разработки
+
+### Промпты пользователя
+
+Вот основные промпты, которые я использовал для создания проекта:
+
+1. **"Залейте файлы в репозиторий: https://github.com/Kiberars/retailcrm_WB.git"**
+   - Создал проект Next.js с нуля
+   - Настроил Tailwind CSS, Supabase, Telegram Bot
+   - Запушил на GitHub
+
+2. **"да используй tailwind css, не забудь про мобильную верстку"**
+   - Добавил Tailwind CSS
+   - Адаптивная верстка с `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4`
+
+3. **"1. создать проект и загрузи его на гит 2. да используй tailwind css"**
+   - Создал полную структуру Next.js 14 проекта
+   - Запушил на GitHub
+
+4. **"1. Vercel - добавь самостоятельно 2. не забудь взять 50 заказов"**
+   - Не смог установить Vercel CLI (ограничения системы)
+   - Получил mock_orders.json через webfetch
+
+5. **"потверждаю"** - Подтверждение плана
+
+### Проблемы и решения
+
+#### 1. GitHub push failed (403)
+**Проблема:** Токен GitHub не работал для пуша
+```
+remote: Invalid username or password
+```
+**Решение:** Получил новый токен `ghp_1Mp0eFOxBgmXcKAsk...`
+
+#### 2. RetailCRM "Account does not exist"
+**Проблема:** Неправильный URL RetailCRM
+```
+{"errorMsg":"Account does not exist.","success":false}
+```
+**Решение:** Изменил URL с `gbc-market.retailcrm.ru` на `kiberars.retailcrm.ru`
+
+#### 3. RetailCRM API аутентификация
+**Проблема:** API-ключ передавался в заголовке, а нужно было в query-параметре
+```
+{"errorMsg":"\"apiKey\" is missing.","success":false}
+```
+**Решение:** Изменил с `headers: { "Api-Key": ... }` на `url.searchParams.set("apiKey", ...)`
+
+#### 4. RetailCRM "Order is not loaded"
+**Проблема:** Невалидные значения orderType и status
+```
+"errors":{"orderType":"\"OrderType\" with \"code\"=\"eshop-individual\" does not exist."}
+```
+**Решение:** Убрал orderType и status из запроса, оставил только обязательные поля
+
+#### 5. Vercel 404 NOT_FOUND
+**Проблема:** Проект был неправильно привязан к GitHub репозиторию
+```
+GET https://project-nukyc.vercel.app/ 404 (Not Found)
+```
+**Решение:** Удалил старый `.vercel` link и переподключил к правильному репозиторию `retailcrm_WB`
+
+#### 6. Supabase client - URL and API key required
+**Проблема:** Переменные окружения не подхватывались на фронтенде
+```
+@supabase/ssr: Your project's URL and API key are required
+```
+**Решение:** Добавил fallback значения в `utils/supabase/client.ts`:
+```typescript
+supabaseUrl || "https://lmbwhoqmgrouoywxvilh.supabase.co"
+```
+
+#### 7. Vercel Telegram Webhook 500 error
+**Проблема:** grammy Bot вызывал ошибку при импорте на верхнем уровне
+```
+Error: Cannot find package 'grammy'
+```
+**Решение:** Использовал динамический import внутри функции:
+```typescript
+const { Bot } = await import("grammy");
+```
+
+### Результат
+
+- ✅ 50 заказов загружены в RetailCRM
+- ✅ 50 заказов синхронизированы в Supabase  
+- ✅ Дашборд работает: https://testovoe-self.vercel.app
+- ✅ Telegram бот отправляет уведомления при заказе > 50,000 ₸
+- ✅ README с документацией и скриншотами
 
 ## Лицензия
 
