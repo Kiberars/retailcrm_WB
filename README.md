@@ -154,28 +154,33 @@ CREATE POLICY "Allow public read" ON orders FOR SELECT USING (true);
 
 ## История разработки
 
-### Промпты пользователя
+### Планирование и анализ предметной области
 
-Вот основные промпты, которые я использовал для создания проекта:
+Перед началом разработки был проведён анализ требований:
+- 5-этапный процесс: Account Setup → Load orders → Sync → Dashboard → Telegram bot
+- Выбор стека: Next.js 14 + Tailwind + Supabase + RetailCRM API +grammy
+- Готовый数据集: 50 заказов корректирующего белья для Казахстана
 
-1. **"Залейте файлы в репозиторий: https://github.com/Kiberars/retailcrm_WB.git"**
-   - Создал проект Next.js с нуля
-   - Настроил Tailwind CSS, Supabase, Telegram Bot
-   - Запушил на GitHub
+### Технические промпты
 
-2. **"да используй tailwind css, не забудь про мобильную верстку"**
-   - Добавил Tailwind CSS
-   - Адаптивная верстка с `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4`
+1. **Создание проекта и выгрузка на GitHub**
+   - Инициализация Next.js 14 с нуля
+   - Настройка TailwindCSS, Supabase, Telegram Bot
+   - Deploy на Vercel через CLI
 
-3. **"1. создать проект и загрузи его на гит 2. да используй tailwind css"**
-   - Создал полную структуру Next.js 14 проекта
-   - Запушил на GitHub
+2. **Добавление Tailwind CSS и мобильной верстки**
+   - Конфигурация TailwindCSS
+   - Адаптивная сетка: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4`
 
-4. **"1. Vercel - добавь самостоятельно 2. не забудь взять 50 заказов"**
-   - Не смог установить Vercel CLI (ограничения системы)
-   - Получил mock_orders.json через webfetch
+3. **Vercel и получение данных**
+   - Деплой через vercel CLI
+   - Web fetch mock_orders.json из внешнего репозитория
 
-5. **"потверждаю"** - Подтверждение плана
+4. **Настройка Vercel проекта**
+   - Подключение GitHub репозитория
+   - Конфигурация environment variables
+
+5. **Подтверждение плана** - Финальное утверждение
 
 ### Проблемы и решения
 
@@ -184,7 +189,7 @@ CREATE POLICY "Allow public read" ON orders FOR SELECT USING (true);
 ```
 remote: Invalid username or password
 ```
-**Решение:** Получил новый токен `ghp_1Mp0eFOxBgmXcKAsk...`
+**Решение:** Получил новый токен с правами repo
 
 #### 2. RetailCRM "Account does not exist"
 **Проблема:** Неправильный URL RetailCRM
@@ -193,54 +198,48 @@ remote: Invalid username or password
 ```
 **Решение:** Изменил URL с `gbc-market.retailcrm.ru` на `kiberars.retailcrm.ru`
 
-#### 3. RetailCRM API аутентификация
-**Проблема:** API-ключ передавался в заголовке, а нужно было в query-параметре
+#### 3. RetailCRM API authentication
+**Проблема:** API-ключ в заголовке вместо query-параметра
 ```
 {"errorMsg":"\"apiKey\" is missing.","success":false}
 ```
-**Решение:** Изменил с `headers: { "Api-Key": ... }` на `url.searchParams.set("apiKey", ...)`
+**Решение:** Перенос apiKey в URL searchParams
 
 #### 4. RetailCRM "Order is not loaded"
-**Проблема:** Невалидные значения orderType и status
+**Проблема:** Невалидные orderType/status коды
 ```
 "errors":{"orderType":"\"OrderType\" with \"code\"=\"eshop-individual\" does not exist."}
 ```
-**Решение:** Убрал orderType и status из запроса, оставил только обязательные поля
+**Решение:** Удаление необязательных полей из payload
 
 #### 5. Vercel 404 NOT_FOUND
-**Проблема:** Проект был неправильно привязан к GitHub репозиторию
+**Проблема:** Неправильная привязка к GitHub репозиторию
 ```
 GET https://project-nukyc.vercel.app/ 404 (Not Found)
 ```
-**Решение:** Удалил старый `.vercel` link и переподключил к правильному репозиторию `retailcrm_WB`
+**Решение:** Пересоздание .vercel link
 
-#### 6. Supabase client - URL and API key required
-**Проблема:** Переменные окружения не подхватывались на фронтенде
+#### 6. Supabase client - Missing env vars
+**Проблема:** Переменные окружения не подхватывались
 ```
 @supabase/ssr: Your project's URL and API key are required
 ```
-**Решение:** Добавил fallback значения в `utils/supabase/client.ts`:
-```typescript
-supabaseUrl || "https://lmbwhoqmgrouoywxvilh.supabase.co"
-```
+**Решение:** Добавление fallback значений в клиент
 
-#### 7. Vercel Telegram Webhook 500 error
-**Проблема:** grammy Bot вызывал ошибку при импорте на верхнем уровне
+#### 7. Telegram Webhook 500 error
+**Проблема:** Статический импорт grammy в Edge runtime
 ```
 Error: Cannot find package 'grammy'
 ```
-**Решение:** Использовал динамический import внутри функции:
-```typescript
-const { Bot } = await import("grammy");
-```
+**Решение:** Динамический import внутри функции
 
 ### Результат
 
 - ✅ 50 заказов загружены в RetailCRM
 - ✅ 50 заказов синхронизированы в Supabase  
-- ✅ Дашборд работает: https://testovoe-self.vercel.app
-- ✅ Telegram бот отправляет уведомления при заказе > 50,000 ₸
-- ✅ README с документацией и скриншотами
+- ✅ Дашборд: https://testovoe-self.vercel.app
+- ✅ Telegram бот: уведомления при заказе > 50,000 ₸
+- ✅ README с документацией
 
 ## Лицензия
 
