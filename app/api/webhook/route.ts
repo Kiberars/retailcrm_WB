@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Bot } from "grammy";
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const ORDER_ALERT_THRESHOLD = parseInt(process.env.ORDER_ALERT_THRESHOLD || "50000", 10);
@@ -29,31 +28,11 @@ interface RetailCrmOrder {
   };
 }
 
-async function sendTelegramNotification(order: RetailCrmOrder, totalAmount: number) {
-  if (!TELEGRAM_BOT_TOKEN || !process.env.TELEGRAM_CHAT_ID) {
-    console.log("Telegram not configured, skipping notification");
-    return;
-  }
-
-  const bot = new Bot(TELEGRAM_BOT_TOKEN);
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-
-  const message = `
-🔔 Новый крупный заказ!
-
-👤 Клиент: ${order.firstName} ${order.lastName}
-📱 Телефон: ${order.phone}
-💰 Сумма: ${totalAmount.toLocaleString("ru-RU")} ₸
-🏙️ Город: ${order.delivery?.address?.city || "Неизвестно"}
-📊 UTM: ${order.customFields?.utm_source || "direct"}
-🕐 Дата: ${new Date(order.createdAt).toLocaleString("ru-RU")}
-  `.trim();
-
-  await bot.api.sendMessage(chatId, message);
-}
-
 export async function POST(request: NextRequest) {
   try {
+    console.log("Webhook called");
+    console.log("Token available:", !!TELEGRAM_BOT_TOKEN);
+    
     const body = await request.json();
     const order: RetailCrmOrder = body.order;
 
@@ -79,10 +58,34 @@ export async function POST(request: NextRequest) {
       raw_data: JSON.stringify(order),
     };
 
-    console.log("Webhook received:", orderData.order_id);
+    console.log("Webhook received:", orderData.order_id, "Amount:", totalAmount);
 
-    if (totalAmount >= ORDER_ALERT_THRESHOLD) {
-      await sendTelegramNotification(order, totalAmount);
+    if (totalAmount >= ORDER_ALERT_THRESHOLD && TELEGRAM_BOT_TOKEN) {
+      const chatId = process.env.TELEGRAM_CHAT_ID;
+      if (chatId) {
+        try {
+          const { Bot } = await import("grammy");
+          const bot = new Bot(TELEGRAM_BOT_TOKEN);
+
+          const message = `
+🔔 Новый крупный заказ!
+
+👤 Клиент: ${order.firstName} ${order.lastName}
+📱 Телефон: ${order.phone}
+💰 Сумма: ${totalAmount.toLocaleString("ru-RU")} ₸
+🏙️ Город: ${order.delivery?.address?.city || "Неизвестно"}
+📊 UTM: ${order.customFields?.utm_source || "direct"}
+🕐 Дата: ${new Date(order.createdAt).toLocaleString("ru-RU")}
+          `.trim();
+
+          await bot.api.sendMessage(chatId, message);
+          console.log("Telegram notification sent");
+        } catch (tgError) {
+          console.error("Telegram error:", tgError);
+        }
+      } else {
+        console.log("TELEGRAM_CHAT_ID not set, skipping notification");
+      }
     }
 
     return NextResponse.json({ success: true });
