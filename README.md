@@ -2,7 +2,7 @@
 
 Аналитическая система для отслеживания заказов корректирующего белья с дашбордом, базой данных Supabase и Telegram-уведомлениями.
 
-![Dashboard](https://github.com/user-attachments/assets/dashboard-preview)
+![Dashboard](dashboard1.png)
 
 ## Архитектура
 
@@ -26,6 +26,24 @@ mock_orders.json → RetailCRM API → Scripts → Supabase → Dashboard (Verce
 - 📱 Адаптивная мобильная верстка
 - 🔄 Синхронизация заказов из RetailCRM в Supabase
 
+## Скриншоты
+
+### Dashboard - Статистика и графики
+
+![Dashboard](dashboard1.png)
+
+### Dashboard - Таблица заказов
+
+![Dashboard](dashboard2.png)
+
+### Supabase - База данных
+
+![Supabase](supabase.png)
+
+### Telegram - Уведомления
+
+![Telegram](telegram_bot.png)
+
 ## Установка
 
 ```bash
@@ -42,6 +60,8 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
 SUPABASE_SERVICE_KEY=your-service-role-key
 RETAILCRM_API_KEY=your-retailcrm-api-key
 TELEGRAM_BOT_TOKEN=your-telegram-bot-token
+TELEGRAM_CHAT_ID=your-chat-id
+ORDER_ALERT_THRESHOLD=50000
 ```
 
 ## Скрипты
@@ -101,6 +121,8 @@ CREATE POLICY "Allow public read" ON orders FOR SELECT USING (true);
 - `SUPABASE_SERVICE_KEY`
 - `RETAILCRM_API_KEY`
 - `TELEGRAM_BOT_TOKEN`
+- `TELEGRAM_CHAT_ID`
+- `ORDER_ALERT_THRESHOLD`
 
 ## Пример данных
 
@@ -109,16 +131,25 @@ CREATE POLICY "Allow public read" ON orders FOR SELECT USING (true);
 - Доставка: Алматы, Астана, Шымкент
 - UTM-источники: Instagram, Google, TikTok, Direct, Referral
 
+## Live Demo
+
+- Дашборд: https://testovoe-self.vercel.app
+- RetailCRM: https://kiberars.retailcrm.ru
+- Supabase: https://supabase.com/dashboard/project/lmbwhoqmgrouoywxvilh
+
 ## Telegram Bot
 
 Бот отправляет уведомление при создании заказа на сумму > 50,000 ₸:
 
 ```
 🔔 Новый крупный заказ!
-Клиент: Иван Иванов
-Сумма: 75,000 ₸
-Город: Алматы
-UTM: instagram
+
+👤 Клиент: Иван Иванов
+📱 Телефон: +77000000000
+💰 Сумма: 75,000 ₸
+🏙️ Город: Алматы
+📊 UTM: instagram
+🕐 Дата: 14.04.2026
 ```
 
 ## Лицензия
