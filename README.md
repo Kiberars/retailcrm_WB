@@ -159,7 +159,7 @@ CREATE POLICY "Allow public read" ON orders FOR SELECT USING (true);
 Перед началом разработки был проведён анализ требований:
 - 5-этапный процесс: Account Setup → Load orders → Sync → Dashboard → Telegram bot
 - Выбор стека: Next.js 14 + Tailwind + Supabase + RetailCRM API +grammy
-- Готовый数据集: 50 заказов корректирующего белья для Казахстана
+- Готовый набор данных: 50 заказов корректирующего белья для Казахстана
 
 ### Технические промпты
 
