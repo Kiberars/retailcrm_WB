@@ -184,54 +184,56 @@ CREATE POLICY "Allow public read" ON orders FOR SELECT USING (true);
 
 ### Проблемы и решения
 
-#### 1. GitHub push failed (403)
-**Проблема:** Токен GitHub не работал для пуша
+### Технические проблемы и решения
+
+#### 1. GitHub API authentication
+**Проблема:** Токен не прошёл валидацию при push
 ```
 remote: Invalid username or password
 ```
-**Решение:** Получил новый токен с правами repo
+**Решение:** Использование Personal Access Token с правами `repo`
 
-#### 2. RetailCRM "Account does not exist"
-**Проблема:** Неправильный URL RetailCRM
+#### 2. RetailCRM API endpoint
+**Проблема:** Ошибка DNS/привязки - домен не существует
 ```
 {"errorMsg":"Account does not exist.","success":false}
 ```
-**Решение:** Изменил URL с `gbc-market.retailcrm.ru` на `kiberars.retailcrm.ru`
+**Решение:** Корректировка baseURL: `gbc-market.retailcrm.ru` → `kiberars.retailcrm.ru`
 
-#### 3. RetailCRM API authentication
-**Проблема:** API-ключ в заголовке вместо query-параметра
+#### 3. RetailCRM API authentication scheme
+**Проблема:** Неверный способ передачи apiKey - использовался HTTP header вместо query string
 ```
 {"errorMsg":"\"apiKey\" is missing.","success":false}
 ```
-**Решение:** Перенос apiKey в URL searchParams
+**Решение:** Передача через `url.searchParams.set("apiKey", ...)` вместо `headers`
 
-#### 4. RetailCRM "Order is not loaded"
-**Проблема:** Невалидные orderType/status коды
+#### 4. RetailCRM order validation
+**Проблема:** Reference values не найдены в справочниках CRM
 ```
 "errors":{"orderType":"\"OrderType\" with \"code\"=\"eshop-individual\" does not exist."}
 ```
-**Решение:** Удаление необязательных полей из payload
+**Решение:** Минимизация payload - удаление полей со справочными значениями
 
-#### 5. Vercel 404 NOT_FOUND
-**Проблема:** Неправильная привязка к GitHub репозиторию
+#### 5. Vercel routing
+**Проблема:** Deployment не привязан к репозиторию с кодом
 ```
 GET https://project-nukyc.vercel.app/ 404 (Not Found)
 ```
-**Решение:** Пересоздание .vercel link
+**Решение:** Пересоздание vercel link с привязкой к `Kiberars/retailcrm_WB`
 
-#### 6. Supabase client - Missing env vars
-**Проблема:** Переменные окружения не подхватывались
+#### 6. Environment variables bundling
+**Проблема:** NEXT_PUBLIC_ переменные не попали в client bundle
 ```
 @supabase/ssr: Your project's URL and API key are required
 ```
-**Решение:** Добавление fallback значений в клиент
+**Решение:** Добавление fallback значений в createBrowserClient
 
-#### 7. Telegram Webhook 500 error
-**Проблема:** Статический импорт grammy в Edge runtime
+#### 7. Edge runtime compatibility
+**Проблема:** Статический импорт пакета grammy не работает в Serverless функции
 ```
 Error: Cannot find package 'grammy'
 ```
-**Решение:** Динамический import внутри функции
+**Решение:** Динамический импорт: `const { Bot } = await import("grammy")`
 
 ### Результат
 
